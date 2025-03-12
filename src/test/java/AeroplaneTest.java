@@ -171,30 +171,6 @@ class AeroplaneTest {
     }
 
     @Test
-    void shouldFindMostCommonPassengerType() {
-        var businessPassenger2 = new Passenger(
-                UUID.randomUUID(),
-                "Joe",
-                PassengerType.BUSINESS_CLASS,
-                2,
-                62.0,
-                null,
-                null
-        );
-
-        assertEquals(
-                PassengerType.BUSINESS_CLASS,
-                passengerService.findMostCommonPassengerType(
-                        List.of(
-                                economyPassenger,
-                                businessClassPassenger,
-                                firstClassPassenger, businessPassenger2
-                        )
-                )
-        );
-    }
-
-    @Test
     void shouldReturnBoardingOrder() {
         assertEquals(3, passengerService.boardOrder(economyPassenger));
         assertEquals(2, passengerService.boardOrder(businessClassPassenger));
@@ -223,6 +199,30 @@ class AeroplaneTest {
         assertEquals(
                 firstClassPassenger.getId(),
                 passengerService.findPassengerIdWithLowestSeatNumber(passengerList)
+        );
+    }
+
+    @Test
+    void shouldFindMostCommonPassengerType() {
+        var businessPassenger2 = new Passenger(
+                UUID.randomUUID(),
+                "Joe",
+                PassengerType.BUSINESS_CLASS,
+                2,
+                62.0,
+                null,
+                null
+        );
+
+        assertEquals(
+                PassengerType.BUSINESS_CLASS,
+                passengerService.findMostCommonPassengerType(
+                        List.of(
+                                economyPassenger,
+                                businessClassPassenger,
+                                firstClassPassenger, businessPassenger2
+                        )
+                )
         );
     }
 
