@@ -5,6 +5,7 @@ import org.example.model.PassengerType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,7 +30,8 @@ class AeroplaneTest {
                 PassengerType.ECONOMY,
                 3,
                 50.0,
-                "Economy Passenger"
+                "Economy Passenger",
+                "13A"
         );
         businessClassPassenger = new Passenger(
                 UUID.randomUUID(),
@@ -37,7 +39,8 @@ class AeroplaneTest {
                 PassengerType.BUSINESS_CLASS,
                 10,
                 66.90,
-                "Business Class Passenger"
+                "Business Class Passenger",
+                "9C"
         );
         firstClassPassenger = new Passenger(
                 UUID.randomUUID(),
@@ -45,7 +48,8 @@ class AeroplaneTest {
                 PassengerType.FIRST_CLASS,
                 3,
                 100.73,
-                null
+                null,
+                "9A"
         );
     }
 
@@ -80,7 +84,7 @@ class AeroplaneTest {
     }
 
     @Test
-    void shouldOrderPassengersBySize() {
+    void shouldOrderPassengersByFare() {
         aeroplane.bulkEnter(economyPassenger, businessClassPassenger, firstClassPassenger);
 
         var result = aeroplane.orderPassengersByFareDescending();
@@ -108,7 +112,7 @@ class AeroplaneTest {
     }
 
     @Test
-    void shouldFilterPassengersBySize() {
+    void shouldFilterPassengersByFare() {
         aeroplane.bulkEnter(economyPassenger, businessClassPassenger, firstClassPassenger);
         var result = passengerService.filterPassengersByFare(
                 java.util.List.of(
@@ -129,6 +133,7 @@ class AeroplaneTest {
                 PassengerType.ECONOMY,
                 null,
                 null,
+                null,
                 null
         );
         var result = passengerService.upgradeToFirstClass(passenger);
@@ -143,6 +148,7 @@ class AeroplaneTest {
                 PassengerType.ECONOMY,
                 2,
                 45.0,
+                null,
                 null
         );
         var result = passengerService.computeTotalCost(passenger);
@@ -157,9 +163,71 @@ class AeroplaneTest {
                 PassengerType.ECONOMY,
                 0,
                 45.0,
+                null,
                 null
         );
         var result = passengerService.computeTotalCost(passenger);
         assertEquals(45.0, result);
+    }
+
+    @Test
+    void shouldFindMostCommonPassengerType() {
+        var businessPassenger2 = new Passenger(
+                UUID.randomUUID(),
+                "Joe",
+                PassengerType.BUSINESS_CLASS,
+                2,
+                62.0,
+                null,
+                null
+        );
+
+        assertEquals(
+                PassengerType.BUSINESS_CLASS,
+                passengerService.findMostCommonPassengerType(
+                        List.of(
+                                economyPassenger,
+                                businessClassPassenger,
+                                firstClassPassenger, businessPassenger2
+                        )
+                )
+        );
+    }
+
+    @Test
+    void shouldReturnBoardingOrder() {
+        assertEquals(3, passengerService.boardOrder(economyPassenger));
+        assertEquals(2, passengerService.boardOrder(businessClassPassenger));
+        assertEquals(1, passengerService.boardOrder(firstClassPassenger));
+    }
+
+    @Test
+    void sortPassengersByStringSeatNumber() {
+        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
+        var sortedPassengers = passengerService.sortPassengersBySeatNumber();
+        assertEquals(sortedPassengers, passengerList);
+    }
+
+    @Test
+    void findPassengerIdBySeatNumber() {
+        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
+        assertEquals(
+                businessClassPassenger.getId(),
+                passengerService.findPassengerIdBySeatNumber(passengerList, businessClassPassenger.getSeatNumber())
+        );
+    }
+
+    @Test
+    void findPassengerIdWithLowestSeatNumber() {
+        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
+        assertEquals(
+                firstClassPassenger.getId(),
+                passengerService.findPassengerIdWithLowestSeatNumber(passengerList)
+        );
+    }
+
+    @Test
+    void shouldReturnNullWhenNoPassengers() {
+        assertEquals(null, passengerService.findMostCommonPassengerType(List.of()));
     }
 }

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class Aeroplane {
 
     private final List<Passenger> passengers = new ArrayList<>();
-
 
     public String enter(Passenger passenger)
     {

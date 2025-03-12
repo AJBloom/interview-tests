@@ -9,14 +9,16 @@ public class Passenger {
     private Integer luggageCount;
     private Double farePrice;
     private String description;
+    private String seatNumber;
 
-    public Passenger(UUID id, String name, PassengerType type, Integer luggageCount, Double farePrice, String description) {
+    public Passenger(UUID id, String name, PassengerType type, Integer luggageCount, Double farePrice, String description, String seatNumber) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.luggageCount = luggageCount;
         this.farePrice = farePrice;
         this.description = description;
+        this.seatNumber = seatNumber;
     }
 
     public UUID getId() {
@@ -41,5 +43,13 @@ public class Passenger {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getSeatNumber() {
+        return seatNumber;
+    }
+
+    public void setSeatNumber(String seatNumber) {
+        this.seatNumber = seatNumber;
     }
 }
