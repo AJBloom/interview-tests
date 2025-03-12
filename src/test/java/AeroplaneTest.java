@@ -59,7 +59,7 @@ class AeroplaneTest {
         assertEquals("Welcome Business Class Passenger Phil", aeroplane.enter(businessClassPassenger));
         assertEquals(2, aeroplane.countPassengers());
         assertEquals(1, aeroplane.countPassengersByType(PassengerType.ECONOMY));
-        assertEquals(1, aeroplane.countPassengersByType(PassengerType.FIRST_CLASS));
+        assertEquals(1, aeroplane.countPassengersByType(PassengerType.BUSINESS_CLASS));
     }
 
     @Test
@@ -87,7 +87,7 @@ class AeroplaneTest {
     void shouldOrderPassengersByFare() {
         aeroplane.bulkEnter(economyPassenger, businessClassPassenger, firstClassPassenger);
 
-        var result = aeroplane.orderPassengersByFareDescending();
+        var result = aeroplane.orderPassengersByFare();
         assertEquals(PassengerType.ECONOMY, result.get(0).getType());
         assertEquals(PassengerType.BUSINESS_CLASS, result.get(1).getType());
         assertEquals(PassengerType.FIRST_CLASS, result.get(2).getType());
@@ -102,7 +102,6 @@ class AeroplaneTest {
 
     @Test
     void shouldFilterPassengersByType() {
-        aeroplane.bulkEnter(economyPassenger, businessClassPassenger, firstClassPassenger);
         var result = passengerService.filterPassengersByType(
                 java.util.List.of(economyPassenger, businessClassPassenger, firstClassPassenger),
                 PassengerType.ECONOMY
@@ -113,8 +112,7 @@ class AeroplaneTest {
 
     @Test
     void shouldFilterPassengersByFare() {
-        aeroplane.bulkEnter(economyPassenger, businessClassPassenger, firstClassPassenger);
-        var result = passengerService.filterPassengersByFare(
+        var result = passengerService.filterPassengersByFareAsInt(
                 java.util.List.of(
                         economyPassenger,
                         businessClassPassenger,
@@ -171,6 +169,38 @@ class AeroplaneTest {
     }
 
     @Test
+    void shouldReturnBoardingOrder() {
+        assertEquals(3, passengerService.boardOrder(economyPassenger));
+        assertEquals(2, passengerService.boardOrder(businessClassPassenger));
+        assertEquals(1, passengerService.boardOrder(firstClassPassenger));
+    }
+
+    @Test
+    void sortPassengersByStringSeatNumber() {
+        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
+        var sortedPassengers = passengerService.sortBySeatNumber(passengerList);
+        assertEquals(sortedPassengers, passengerList);
+    }
+
+    @Test
+    void findPassengerIdBySeatNumber() {
+        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
+        assertEquals(
+                businessClassPassenger.getId(),
+                passengerService.findPassengerIdBySeatNumber(passengerList, businessClassPassenger.getSeatNumber())
+        );
+    }
+
+    @Test
+    void findPassengerIdWithLowestSeatNumber() {
+        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
+        assertEquals(
+                firstClassPassenger.getId(),
+                passengerService.findPassengerIdWithLowestSeatNumber(passengerList)
+        );
+    }
+
+    @Test
     void shouldFindMostCommonPassengerType() {
         var businessPassenger2 = new Passenger(
                 UUID.randomUUID(),
@@ -191,38 +221,6 @@ class AeroplaneTest {
                                 firstClassPassenger, businessPassenger2
                         )
                 )
-        );
-    }
-
-    @Test
-    void shouldReturnBoardingOrder() {
-        assertEquals(3, passengerService.boardOrder(economyPassenger));
-        assertEquals(2, passengerService.boardOrder(businessClassPassenger));
-        assertEquals(1, passengerService.boardOrder(firstClassPassenger));
-    }
-
-    @Test
-    void sortPassengersByStringSeatNumber() {
-        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
-        var sortedPassengers = passengerService.sortPassengersBySeatNumber();
-        assertEquals(sortedPassengers, passengerList);
-    }
-
-    @Test
-    void findPassengerIdBySeatNumber() {
-        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
-        assertEquals(
-                businessClassPassenger.getId(),
-                passengerService.findPassengerIdBySeatNumber(passengerList, businessClassPassenger.getSeatNumber())
-        );
-    }
-
-    @Test
-    void findPassengerIdWithLowestSeatNumber() {
-        var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
-        assertEquals(
-                firstClassPassenger.getId(),
-                passengerService.findPassengerIdWithLowestSeatNumber(passengerList)
         );
     }
 

@@ -10,7 +10,7 @@ public class PassengerService {
         return filterByType(people, passengerType);
     }
 
-    public List<Passenger> filterPassengersByFare(List<Passenger> people, int fareFrom)
+    public List<Passenger> filterPassengersByFareAsInt(List<Passenger> people, int fareFrom)
     {
         return filterByFare(people, fareFrom);
     }
@@ -42,10 +42,6 @@ public class PassengerService {
 
     public int boardOrder(Passenger passenger) {
         throw new UnsupportedOperationException ("Return the boarding order of the passenger");
-    }
-
-    public List<Passenger> sortPassengersBySeatNumber() {
-        throw new UnsupportedOperationException ("Return a list of passengers sorted by seat number");
     }
 
     public  List<Passenger> sortBySeatNumber(List<Passenger> passengers) {

@@ -30,6 +30,16 @@ We recommend using **IntelliJ IDEA**, as it is well-suited for Java and Kotlin d
 
 This project requires **Java 17** to function.
 
+### Through your IDE
+
+Often, the IDE will automatically detect and prompt you to download the JDK for the project if it's missing.
+When opening the project for the first time in IntelliJ IDEA:
+
+1. If a compatible JDK is not configured, IntelliJ will display a notification or a prompt suggesting JDK installation.
+2. You can follow the provided link in the prompt to download and set up the required JDK directly within the IDE.
+3. After downloading, IntelliJ will automatically configure the project to use the new JDK.
+
+### OR Manually
 1. Download JDK 17:
     - [Oracle JDK](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
     - [AdoptOpenJDK (OpenJDK)](https://adoptopenjdk.net/)
@@ -58,7 +68,6 @@ This project uses **JUnit 5** to ensure functionality works as expected.
 
 1. Open the test files:
     - Tests written in **Java** are under `src/test/java`.
-    - Tests written in **Kotlin** are under `src/test/kotlin`.
 2. Right-click on the test class (e.g., `AeroplaneTest`) and select **Run 'TestName'**.
 3. Observe the output:
     - Any failing tests will appear in red in the test runner window.
@@ -67,10 +76,35 @@ This project uses **JUnit 5** to ensure functionality works as expected.
 
 ## 5. Implement Logic to Pass the Tests
 
-The methods in some classes (e.g., `Aeroplane` and `PassengerService`) contain unimplemented logic. These are marked with `throw new UnsupportedOperationException`.
+The methods in some classes (e.g., `Aeroplane` and `PassengerService`) contain unimplemented logic. 
+These are marked with `throw new UnsupportedOperationException`.
 
 ### Steps:
 1. Identify the functionality described in the test cases.
 2. Open the corresponding class and locate the unimplemented method.
 3. Write the logic to meet the test expectations.
 
+If you aren't comfortable writing Java immediately, you can write **pseudocode** as comments within the method.
+- Pseudocode helps describe the logic in a language-independent way and can later be translated to Java.
+- For example:
+  ```
+  // Pseudocode:
+  // 1. Check if the input is valid
+  // 2. If valid, perform the specified operation
+  //    a. Iterate through the list
+  //    b. Find the matching element
+  //    c. Update the element with the new value
+  // 3. Return the result or an appropriate message
+  ```
+- Alternatively, if you prefer Python-like syntax:
+  ```
+  # Example in Python-like syntax:
+  if input_is_valid:
+      for element in list:
+          if element matches criteria:
+              update_element()
+      return result
+  else:
+      raise Exception("Invalid input")
+  ```
+- This way, you can focus on designing the logic before syntax implementation.

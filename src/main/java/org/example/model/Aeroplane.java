@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class Aeroplane {
 
@@ -19,7 +18,7 @@ public class Aeroplane {
 
     public List<Passenger> bulkEnter(Passenger... passenger)
     {
-        throw new UnsupportedOperationException ("Implement method that executes enter(passenger) for each passenger and return all welcome messages as list");
+        throw new UnsupportedOperationException ("Implement method that executes enter(passenger) for each passenger and return all as list");
     }
 
     public boolean exit(UUID passengerId)
@@ -42,7 +41,7 @@ public class Aeroplane {
         throw new UnsupportedOperationException ("Convert passenger list to a map keyed by passenger type. If any two elements would have the same key, then the last one gets added to the map");
     }
 
-    public List<Passenger> orderPassengersByFareDescending()
+    public List<Passenger> orderPassengersByFare()
     {
         throw new UnsupportedOperationException ("Return a list of all passengers (from passengers list) sorted in descending order of fare price");
     }
