@@ -17,6 +17,11 @@ Each unimplemented method has a description of what it should do. The tests in `
 
 You are not expected to modify the tests or add new files.
 
+## What we are looking for
+
+- **How you approach a problem** — breaking it down, identifying edge cases, reasoning through the logic
+- **Not** perfect Java syntax, optimal algorithms, or a complete solution — partial answers are fine
+
 ---
 
 ## Option A — No setup required
@@ -26,12 +31,18 @@ Just open the two files directly and write your solution as code, pseudocode, or
 - `src/main/java/org/example/model/Aeroplane.java`
 - `src/main/java/org/example/model/PassengerService.java`
 
-For example, instead of implementing a method you could write:
+Pseudocode in any language or style is welcome — Python, JavaScript, plain English, whatever you think in. For example:
 
 ```java
 public int countPassengers() {
     // return the size of the passengers list
 }
+```
+
+```python
+def count_passengers():
+    # Python-style if that's more natural:
+    return len(passengers)
 ```
 
 That is enough for us to understand your thinking.
