@@ -1,110 +1,56 @@
-# Project Setup and Implementation Guide
+# Java Interview Exercise — Aeroplane Passenger Management
 
-This guide provides instructions to set up your development environment, install Java, and implement the required logic to make the tests pass.
+This is a take-home coding exercise. Your task is to implement the logic in two classes so that all tests pass.
 
----
-
-## Table of Contents
-1. [Download and Install an IDE](#1-download-and-install-an-ide)
-2. [Install Java Development Kit (JDK)](#2-install-java-development-kit-jdk)
-3. [Open the Project](#3-open-the-project)
-4. [Run and View the Existing Tests](#4-run-and-view-the-existing-tests)
-5. [Implement Logic to Pass the Tests](#5-implement-logic-to-pass-the-tests)
-6. [Example Implementation](#6-example-implementation)
-7. [Debugging and Re-running Tests](#7-debugging-and-re-running-tests)
-8. [Commit Your Changes](#8-commit-your-changes)
+**There is no pressure to set up a full development environment.** If you would rather read the code and write pseudocode or plain English explanations of your approach, that is completely fine — we are interested in how you think, not whether you can configure a Java toolchain. Do as much or as little as you are comfortable with.
 
 ---
 
-## 1. Download and Install an IDE
+## What the exercise involves
 
-We recommend using **IntelliJ IDEA**, as it is well-suited for Java and Kotlin development.
+The code models a simple aeroplane passenger system. Two classes need implementing:
 
-1. Visit [IntelliJ IDEA Download Page](https://www.jetbrains.com/idea/download/).
-2. Download the **Community Edition** (free version) for your operating system.
-3. Install IntelliJ IDEA by following the installation guide.
+- `Aeroplane` — manages a list of passengers on the plane (adding, removing, querying)
+- `PassengerService` — utility methods for filtering, sorting, and calculating costs
 
----
+Each unimplemented method has a description of what it should do. The tests in `AeroplaneTest.java` show exactly what inputs and outputs are expected.
 
-## 2. Install Java Development Kit (JDK)
-
-This project requires **Java 17** to function.
-
-### Through your IDE
-
-Often, the IDE will automatically detect and prompt you to download the JDK for the project if it's missing.
-When opening the project for the first time in IntelliJ IDEA:
-
-1. If a compatible JDK is not configured, IntelliJ will display a notification or a prompt suggesting JDK installation.
-2. You can follow the provided link in the prompt to download and set up the required JDK directly within the IDE.
-3. After downloading, IntelliJ will automatically configure the project to use the new JDK.
-
-### OR Manually
-1. Download JDK 17:
-    - [Oracle JDK](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)
-    - [AdoptOpenJDK (OpenJDK)](https://adoptopenjdk.net/)
-2. Install JDK 17 based on your operating system.
-3. After installation, add JDK 17 to IntelliJ IDEA:
-    - Go to **File** > **Project Structure** > **SDKs** > **Add JDK**.
-    - Select the folder where JDK 17 is installed.
+You are not expected to modify the tests or add new files.
 
 ---
 
-## 3. Open the Project
+## Option A — No setup required
 
-To start working on the project:
+Just open the two files directly and write your solution as code, pseudocode, or comments:
 
-1. Clone the repository or extract the project into a folder.
-2. Open IntelliJ IDEA, then click:
-    - **Open** > Navigate to the project folder, and open it.
-3. Set the appropriate JDK:
-    - Go to **File** > **Project Structure** > **Project** and select JDK 17 under the SDK dropdown.
+- `src/main/java/org/example/model/Aeroplane.java`
+- `src/main/java/org/example/model/PassengerService.java`
 
----
+For example, instead of implementing a method you could write:
 
-## 4. Run and View the Existing Tests
+```java
+public int countPassengers() {
+    // return the size of the passengers list
+}
+```
 
-This project uses **JUnit 5** to ensure functionality works as expected.
-
-1. Open the test files:
-    - Tests written in **Java** are under `src/test/java`.
-2. Right-click on the test class (e.g., `AeroplaneTest`) and select **Run 'TestName'**.
-3. Observe the output:
-    - Any failing tests will appear in red in the test runner window.
+That is enough for us to understand your thinking.
 
 ---
 
-## 5. Implement Logic to Pass the Tests
+## Option B — Run the tests locally
 
-The methods in some classes (e.g., `Aeroplane` and `PassengerService`) contain unimplemented logic. 
-These are marked with `throw new UnsupportedOperationException`.
+If you already have Java 17 and Maven set up, or are happy to install them yourself, you can run the tests to verify your implementation:
 
-### Steps:
-1. Identify the functionality described in the test cases.
-2. Open the corresponding class and locate the unimplemented method.
-3. Write the logic to meet the test expectations.
+```bash
+# Run all tests
+mvn clean test
 
-If you aren't comfortable writing Java immediately, you can write **pseudocode** as comments within the method.
-- Pseudocode helps describe the logic in a language-independent way and can later be translated to Java.
-- For example:
-  ```
-  // Pseudocode:
-  // 1. Check if the input is valid
-  // 2. If valid, perform the specified operation
-  //    a. Iterate through the list
-  //    b. Find the matching element
-  //    c. Update the element with the new value
-  // 3. Return the result or an appropriate message
-  ```
-- Alternatively, if you prefer Python-like syntax:
-  ```
-  # Example in Python-like syntax:
-  if input_is_valid:
-      for element in list:
-          if element matches criteria:
-              update_element()
-      return result
-  else:
-      raise Exception("Invalid input")
-  ```
-- This way, you can focus on designing the logic before syntax implementation.
+# Run a single test
+mvn test -Dtest=AeroplaneTest#shouldAddPassengerOnEnter
+```
+
+> **Note:** We do not provide support for local environment setup. Any software you install is at your own discretion — please source tools from their official websites and review any licence terms before installing.
+
+If you want an IDE, IntelliJ IDEA (Community Edition) and VS Code with the Java Extension Pack are commonly used free options.
+

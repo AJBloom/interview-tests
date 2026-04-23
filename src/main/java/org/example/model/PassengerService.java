@@ -7,12 +7,12 @@ public class PassengerService {
 
     public List<Passenger> filterPassengersByType(List<Passenger> people, PassengerType... passengerType)
     {
-        return filterByType(people, passengerType);
+        throw new UnsupportedOperationException ("Implement function that filters passengers by given types");
     }
 
-    public List<Passenger> filterPassengersByFareAsInt(List<Passenger> people, int fareFrom)
+    public List<Passenger> filterPassengersByFareAsInt(List<Passenger> people, int fareTo)
     {
-        return filterByFare(people, fareFrom);
+        throw new UnsupportedOperationException ("Implement function that filters passengers with a fare price less than or equal to fareTo");
     }
 
     public Passenger upgradeToFirstClass(Passenger passenger)

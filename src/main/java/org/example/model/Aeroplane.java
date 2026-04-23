@@ -43,10 +43,10 @@ public class Aeroplane {
 
     public List<Passenger> orderPassengersByFare()
     {
-        throw new UnsupportedOperationException ("Return a list of all passengers (from passengers list) sorted in descending order of fare price");
+        throw new UnsupportedOperationException ("Return a list of all passengers (from passengers list) sorted in ascending order of fare price");
     }
 
-    public int totalFare()
+    public double totalFare()
     {
         throw new UnsupportedOperationException ("Return the sum of all passenger fare prices");
     }

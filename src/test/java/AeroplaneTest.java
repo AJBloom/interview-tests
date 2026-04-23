@@ -103,7 +103,7 @@ class AeroplaneTest {
     @Test
     void shouldFilterPassengersByType() {
         var result = passengerService.filterPassengersByType(
-                java.util.List.of(economyPassenger, businessClassPassenger, firstClassPassenger),
+                List.of(economyPassenger, businessClassPassenger, firstClassPassenger),
                 PassengerType.ECONOMY
         );
         assertEquals(1, result.size());
@@ -113,7 +113,7 @@ class AeroplaneTest {
     @Test
     void shouldFilterPassengersByFare() {
         var result = passengerService.filterPassengersByFareAsInt(
-                java.util.List.of(
+                List.of(
                         economyPassenger,
                         businessClassPassenger,
                         firstClassPassenger
@@ -176,14 +176,14 @@ class AeroplaneTest {
     }
 
     @Test
-    void sortPassengersByStringSeatNumber() {
+    void shouldSortPassengersBySeatNumber() {
         var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
         var sortedPassengers = passengerService.sortBySeatNumber(passengerList);
         assertEquals(sortedPassengers, passengerList);
     }
 
     @Test
-    void findPassengerIdBySeatNumber() {
+    void shouldFindPassengerIdBySeatNumber() {
         var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
         assertEquals(
                 businessClassPassenger.getId(),
@@ -192,7 +192,7 @@ class AeroplaneTest {
     }
 
     @Test
-    void findPassengerIdWithLowestSeatNumber() {
+    void shouldFindPassengerIdWithLowestSeatNumber() {
         var passengerList = List.of(economyPassenger, businessClassPassenger, firstClassPassenger);
         assertEquals(
                 firstClassPassenger.getId(),
