@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 public class PassengerService {
+    private static UnsupportedOperationException todo(String message) {
+        return new UnsupportedOperationException(message);
+    }
 
     public List<Passenger> filterPassengersByType(List<Passenger> people, PassengerType... passengerType)
     {
@@ -17,42 +20,42 @@ public class PassengerService {
 
     public Passenger upgradeToFirstClass(Passenger passenger)
     {
-        throw new UnsupportedOperationException ("Implement function that returns a new passenger with upgraded type to FIRST_CLASS");
+        throw todo("Implement function that returns a new passenger with upgraded type to FIRST_CLASS");
     }
 
     public Double computeTotalCost(Passenger passenger)
     {
-        throw new UnsupportedOperationException ("Implement function that returns total cost of passenger (fare price + (5 * luggage count))");
+        throw todo("Implement function that returns total cost of passenger (fare price + (5 * luggage count))");
     }
 
     public List<Passenger> filterByType(List<Passenger> passengers, PassengerType... passengerType)
     {
-        throw new UnsupportedOperationException ("Implement function that filters passengers by given types");
+        throw todo("Implement function that filters passengers by given types");
     }
 
     public List<Passenger> filterByFare(List<Passenger> passengers, int fareFrom)
     {
-        throw new UnsupportedOperationException ("Implement function that filters passengers by given fareFrom");
+        throw todo("Implement function that filters passengers by given fareFrom");
     }
 
     public PassengerType findMostCommonPassengerType(List<Passenger> passengers)
     {
-        throw new UnsupportedOperationException ("Return the most common passenger type among all passengers");
+        throw todo("Return the most common passenger type among all passengers");
     }
 
     public int boardOrder(Passenger passenger) {
-        throw new UnsupportedOperationException ("Return the boarding order of the passenger");
+        throw todo("Return the boarding order of the passenger");
     }
 
-    public  List<Passenger> sortBySeatNumber(List<Passenger> passengers) {
-        throw new UnsupportedOperationException ("Implement function that sorts passengers by seat number");
+    public List<Passenger> sortBySeatNumber(List<Passenger> passengers) {
+        throw todo("Implement function that sorts passengers by seat number");
     }
 
     public UUID findPassengerIdBySeatNumber(List<Passenger> passengers, String seatNumber) {
-        throw new UnsupportedOperationException ("Implement function that returns passenger id by seat number");
+        throw todo("Implement function that returns passenger id by seat number");
     }
 
     public UUID findPassengerIdWithLowestSeatNumber(List<Passenger> passengers) {
-        throw new UnsupportedOperationException ("Implement function that returns passenger id with lowest seat number");
+        throw todo("Implement function that returns passenger id with lowest seat number");
     }
 }
